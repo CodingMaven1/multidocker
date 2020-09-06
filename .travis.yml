@@ -1,0 +1,22 @@
+sudo:required
+services:
+    - docker
+
+before_install:
+    - docker build -t codingmaven/react-test -f ./client/Dockerfile.dev ./client
+
+script:
+    - docker run codingmaven/react-test npm test -- --coverage
+
+after_success:
+    - docker build -t codingmaven/client ./client
+    - docker build -t codingmaven/nginx ./nginx
+    - docker build -t codingmaven/server ./server
+    - docker build -t codingmaven/worker ./worker
+
+    - echo "$DOCKER_PASSWORD" `| docker login -u "$DOCKER_ID"  --password-stdin
+
+    -docker push codingmaven/client
+    -docker push codingmaven/nginx
+    -docker push codingmaven/server
+    -docker push codingmaven/worker
