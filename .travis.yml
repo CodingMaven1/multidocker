@@ -14,7 +14,7 @@ after_success:
     - docker build -t codingmaven/server ./server
     - docker build -t codingmaven/worker ./worker
 
-    - echo "$DOCKER_PASSWORD" `| docker login -u "$DOCKER_ID"  --password-stdin
+    - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID"  --password-stdin
 
     -docker push codingmaven/client
     -docker push codingmaven/nginx
