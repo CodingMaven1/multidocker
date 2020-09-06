@@ -17,7 +17,7 @@ after_success:
 
     - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID"  --password-stdin
 
-    -docker push codingmaven/client
-    -docker push codingmaven/nginx
-    -docker push codingmaven/server
-    -docker push codingmaven/worker
+    - docker push codingmaven/client
+    - docker push codingmaven/nginx
+    - docker push codingmaven/server
+    - docker push codingmaven/worker
